@@ -1,0 +1,80 @@
+{
+  "Args": {
+    "Description": "",
+    "Name": "",
+    "Settable": null,
+    "Value": null
+  },
+  "Description": "s3 backed volume driver for Docker",
+  "Documentation": "https://github.com/akamensky/docker-s3vol",
+  "Entrypoint": [
+    "/bin/s3driver"
+  ],
+  "Env": [
+    {
+      "Description": "S3 Bucket name",
+      "Name": "S3_BUCKET",
+      "Settable": [
+        "value"
+      ],
+      "Value": ""
+    },
+    {
+      "Description": "S3 API Access key",
+      "Name": "S3_ACCESS_KEY",
+      "Settable": [
+        "value"
+      ],
+      "Value": ""
+    },
+    {
+      "Description": "S3 API Secret key",
+      "Name": "S3_SECRET_KEY",
+      "Settable": [
+        "value"
+      ],
+      "Value": ""
+    },
+    {
+      "Description": "S3 Endpoint URL",
+      "Name": "S3_ENDPOINT",
+      "Settable": [
+        "value"
+      ],
+      "Value": ""
+    },
+    {
+      "Description": "Additional s3fs options",
+      "Name": "S3VOL_OPTIONS",
+      "Settable": [
+        "value"
+      ],
+      "Value": ""
+    }
+  ],
+  "Interface": {
+    "Socket": "s3vol.sock",
+    "Types": [
+      "docker.volumedriver/1.0"
+    ]
+  },
+  "Linux": {
+    "Capabilities": ["CAP_SYS_ADMIN"],
+    "AllowAllDevices": true,
+    "Devices": null
+  },
+  "Mounts": [
+    {
+      "Source": "/dev",
+      "Destination": "/dev",
+      "Type": "bind",
+      "Options": ["rbind"]
+    }
+  ],
+  "Network": {
+    "Type": "host"
+  },
+  "PropagatedMount": "/mnt/mounts",
+  "User": {},
+  "Workdir": ""
+}
